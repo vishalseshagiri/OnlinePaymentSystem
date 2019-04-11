@@ -4,7 +4,7 @@
 #### UML Sequence Diagram
 ![](Documentation/Glassdoor_intern_UML_Sequence_Diagram.png)
 
-#### UML Sequence Diagram
+#### UML Class Diagram
 ![](Documentation/Glassdoor_intern_UML_Class_Diagram.png)
 
 #### Goal
