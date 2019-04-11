@@ -4,47 +4,40 @@ import com.glassdoor.test.intern.pymtProcDTO.IncomingRequest;
 import com.glassdoor.test.intern.pymtProcDTO.UserObject;
 import com.glassdoor.test.intern.interfaces.PaymentProcessor;
 
-//Make Fina Class for Exception Messages
-//Comment
-// Private Variables
-//Getters Setters
-//Removethis
-
-
 public class IssuingBank implements PaymentProcessor {
 
     IncomingRequest incomingRequest;
     private boolean paymentStatus;
 
     public IssuingBank(IncomingRequest i) throws Exception {
-        this.incomingRequest = i;
-        this.processPayment();
+        incomingRequest = i;
+        processPayment();
         paymentStatus = false;
     }
 
     @Override
     public void processPayment() throws Exception {
-        this.chargeFee();
+        chargeFee();
         UserDatabase userDatabase = new UserDatabase();
         // Check if user exists ?
-        if (userDatabase.users.containsKey(this.incomingRequest.getUserId())) {
-            UserObject user = userDatabase.users.get(this.incomingRequest.getUserId());
+        if (userDatabase.users.containsKey(incomingRequest.getUserId())) {
+            UserObject user = userDatabase.users.get(incomingRequest.getUserId());
             // If isCardPresentTransaction
-            if (this.incomingRequest.isCardPresentTransaction()) {
-                if (!this.incomingRequest.getPin().equals(user.getCardPin())) {
-                    System.out.println(this.incomingRequest.getPin() + " " + user.getCardPin());
+            if (incomingRequest.isCardPresentTransaction()) {
+                if (!incomingRequest.getPin().equals(user.getCardPin())) {
+                    System.out.println(incomingRequest.getPin() + " " + user.getCardPin());
                     throw new Exception("Illegal Transaction request, Pin is incorrect !");
                 }
             }
             // Does the billing address and incomingRequest address correct
-            if (user.getAddress().equals(this.incomingRequest.getBillingAddress())) {
+            if (user.getAddress().equals(incomingRequest.getBillingAddress())) {
                 // Is there enough credit ?
-                if (user.getAccountBalance() > this.incomingRequest.getAmount()) {
+                if (user.getAccountBalance() > incomingRequest.getAmount()) {
                     // Was the card stolen ?
                     if (!user.isCardStolen()) {
                         // Location of transaction ?
                         // Google maps integration if possible
-                        this.paymentStatus = true;
+                        paymentStatus = true;
                     } else {
                         throw new Exception("Illegal Transaction request, Card is Stolen !");
                     }
@@ -59,6 +52,7 @@ public class IssuingBank implements PaymentProcessor {
         }
     }
 
+    @Override
     public boolean getPaymentStatus() {
         return paymentStatus;
     }
@@ -66,6 +60,6 @@ public class IssuingBank implements PaymentProcessor {
     @Override
     public void chargeFee() {
         // Charge a 5% fee
-        this.incomingRequest.setAmount(incomingRequest.getAmount() + (0.05F * this.incomingRequest.getOriginalAmount()));
+        incomingRequest.setAmount(incomingRequest.getAmount() + (0.05F * incomingRequest.getOriginalAmount()));
     }
 }

@@ -1,7 +1,6 @@
 package com.glassdoor.test.intern.interfaces.impl;
 
 //Gracefully Handle Exception Failure
-//Getters Setter
 //SYNCHRONIZED METHOD
 
 //Comment
@@ -18,8 +17,8 @@ public class AcquiringBank implements PaymentProcessor {
     public boolean paymentStatus;
 
     public AcquiringBank(IncomingRequest i) throws Exception {
-       this.incomingRequest = i;
-       this.processPayment();
+       incomingRequest = i;
+       processPayment();
        paymentStatus = false;
     }
 
@@ -52,6 +51,7 @@ public class AcquiringBank implements PaymentProcessor {
         incomingRequest.setAmount(incomingRequest.getAmount() + (0.10F * incomingRequest.getOriginalAmount()));
     }
 
+    @Override
     public boolean getPaymentStatus() {
        return paymentStatus;
     }

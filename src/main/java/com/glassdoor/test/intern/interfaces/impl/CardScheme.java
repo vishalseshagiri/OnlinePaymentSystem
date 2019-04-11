@@ -14,26 +14,28 @@ public class CardScheme implements PaymentProcessor {
     private boolean paymentStatus;
 
     public CardScheme(IncomingRequest i) throws Exception {
-        this.incomingRequest = i;
-        this.processPayment();
+        incomingRequest = i;
+        paymentStatus = false;
+        processPayment();
     }
     @Override
     public void processPayment() throws Exception {
         // Route to Issuing Bank
-        this.chargeFee();
-        IssuingBank issuingBank = new IssuingBank(this.incomingRequest);
+        chargeFee();
+        IssuingBank issuingBank = new IssuingBank(incomingRequest);
         if (issuingBank.getPaymentStatus()) {
-            this.incomingRequest.setAmount(issuingBank.incomingRequest.getAmount());
-            this.paymentStatus = true;
+            incomingRequest.setAmount(issuingBank.incomingRequest.getAmount());
+            paymentStatus = true;
         }
     }
 
     @Override
     public void chargeFee() {
     // Charge a 20% fee
-        this.incomingRequest.setAmount(incomingRequest.getAmount() + (0.20F * incomingRequest.getOriginalAmount()));
+        incomingRequest.setAmount(incomingRequest.getAmount() + (0.20F * incomingRequest.getOriginalAmount()));
     }
 
+    @Override
     public boolean getPaymentStatus() {
         return this.paymentStatus;
     }
