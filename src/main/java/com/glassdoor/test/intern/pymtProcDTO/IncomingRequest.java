@@ -1,5 +1,8 @@
-package com.glassdoor.test.intern.first;
+package com.glassdoor.test.intern.pymtProcDTO;
 
+
+
+//Define Object
 public class IncomingRequest {
 
   private int userId;
@@ -18,12 +21,12 @@ public class IncomingRequest {
 
   }
 
-  public IncomingRequest(int userId, String userName, String billingAddress,float original_amount, float amount, String cardNumber, String cardScheme, String merchant, String transactionLocation) {
+  public IncomingRequest(int userId, String userName, String billingAddress,float originalAmount, float amount, String cardNumber, String cardScheme, String merchant, String transactionLocation) {
     setUserId(userId);
     setUserName(userName);
     setBillingAddress(billingAddress);
     setAmount(amount);
-    setOriginal_amount(original_amount);
+    setOriginalAmount(originalAmount);
     setCardNumber(cardNumber);
     setCardScheme(cardScheme);
     setMerchant(merchant);
@@ -31,12 +34,12 @@ public class IncomingRequest {
   }
 
   // Overriden constructor for isCardPresentTransaction
-  public IncomingRequest(int userId, String userName, String billingAddress, float amount, float original_amount, String cardNumber, String cardScheme, String merchant, boolean isCardPresentTransaction, String cardPin, String transactionLocation) throws Exception {
+  public IncomingRequest(int userId, String userName, String billingAddress, float amount, float originalAmount, String cardNumber, String cardScheme, String merchant, boolean isCardPresentTransaction, String cardPin, String transactionLocation) throws Exception {
     setUserId(userId);
     setUserName(userName);
     setBillingAddress(billingAddress);
     setAmount(amount);
-    setOriginal_amount(original_amount);
+    setOriginalAmount(originalAmount);
     setCardNumber(cardNumber);
     setCardScheme(cardScheme);
     setCardPresentTransaction(isCardPresentTransaction);
@@ -69,7 +72,7 @@ public class IncomingRequest {
   }
 
   public String toString() {
-    return String.format("userId : %d\nuserName : %s\nbillingAddress : %s\namount : %f\ncardNumber : %s\ncardScheme : %s\n", getUserId(), getBillingAddress(), getAmount(), getCardNumber(), getCardScheme());
+    return String.format("userId : %d\nuserName : %s\nbillingAddress : %s\namount : %f\ncardNumber : %s\ncardScheme : %s\n", getUserId(), getUserName(), getBillingAddress(), getAmount(), getCardNumber(), getCardScheme());
   }
 
   public int getUserId() {
@@ -96,11 +99,11 @@ public class IncomingRequest {
     this.billingAddress = billingAddress;
   }
 
-  public float getOriginal_amount() {
+  public float getOriginalAmount() {
     return originalAmount;
   }
 
-  public void setOriginal_amount(float originalAmount) {
+  public void setOriginalAmount(float originalAmount) {
     this.originalAmount = originalAmount;
   }
 

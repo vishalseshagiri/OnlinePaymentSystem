@@ -1,4 +1,4 @@
 userId|userName|cardNumber|address|accountBalance|cardPin|cardStolen
-1|ABC|1234567891011121|123 Some Street, City Name, ST|50000|passwords|false
+1|ABC|1234567891011121|123 Some Street, City Name, ST|50000|password|false
 2|XYZ|1234567891011122|456 Other Street, Cool City, SS|20000|password|true
 3|Vishal|1234567891011121|721W, 30th Street|1000|password|false

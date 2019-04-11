@@ -1,11 +1,13 @@
-package com.glassdoor.test.intern.first;
+package com.glassdoor.test.intern.interfaces;
 
+
+//Comment
 public interface PaymentProcessor {
 
-    public void process_payment() throws Exception;
-    public void chargeFee();
+    void processPayment() throws Exception;
+    void chargeFee();
 
-//  public boolean process_payment(IncomingRequest incomingrequest) {
+//  public boolean processPayment(IncomingRequest incomingrequest) {
 //    UserDatabase userDatabase = new UserDatabase();
 //    if (userDatabase.userNames.containsKey(incomingrequest.userId)) {
 //      if (incomingrequest.userName.equals(userDatabase.userNames.get(incomingrequest.userId))
