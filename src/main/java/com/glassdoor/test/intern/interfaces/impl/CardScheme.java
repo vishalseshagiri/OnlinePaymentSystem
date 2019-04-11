@@ -1,11 +1,5 @@
 package com.glassdoor.test.intern.interfaces.impl;
 
-//Private
-//Getters Stetter
-//Synchronized
-//Comment
-// Remove This
-
 import com.glassdoor.test.intern.pymtProcDTO.IncomingRequest;
 import com.glassdoor.test.intern.interfaces.PaymentProcessor;
 

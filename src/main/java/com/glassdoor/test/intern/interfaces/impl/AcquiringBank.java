@@ -1,10 +1,5 @@
 package com.glassdoor.test.intern.interfaces.impl;
 
-//Gracefully Handle Exception Failure
-//SYNCHRONIZED METHOD
-
-//Comment
-
 import com.glassdoor.test.intern.pymtProcDTO.ErrorHandler;
 import com.glassdoor.test.intern.pymtProcDTO.IncomingRequest;
 import com.glassdoor.test.intern.interfaces.PaymentProcessor;
@@ -40,7 +35,6 @@ public class AcquiringBank implements PaymentProcessor {
             }
         } else {
 
-//            throw new Exception("Illegal Argument Exception, Merchant does not exist !");
             throw new Exception(ErrorHandler.MERCHANTDOESNOTEXIT);
         }
     }

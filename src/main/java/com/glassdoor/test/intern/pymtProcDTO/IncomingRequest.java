@@ -1,8 +1,5 @@
 package com.glassdoor.test.intern.pymtProcDTO;
 
-
-
-//Define Object
 public class IncomingRequest {
 
   private int userId;
@@ -47,10 +44,6 @@ public class IncomingRequest {
     setTransactionLocation(transactionLocation);
     setPin(cardPin);
   }
-
-
-  // Retrun Type Boolean
-  // Add Error Messages to Other Class
 
   public void setPin(String pinSequence) throws Exception {
     if (isCardPresentTransaction()) {

@@ -1,7 +1,8 @@
 package com.glassdoor.test.intern.interfaces;
 
-
-//Comment
+/*
+ * PaymentProcessor
+ */
 public interface PaymentProcessor {
 
     void processPayment() throws Exception;

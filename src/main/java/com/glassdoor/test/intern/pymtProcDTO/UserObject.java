@@ -1,9 +1,5 @@
 package com.glassdoor.test.intern.pymtProcDTO;
 
-
-//Private
-//Getters Setters
-//Comment
 public class UserObject {
     private int userId;
     private String userName;

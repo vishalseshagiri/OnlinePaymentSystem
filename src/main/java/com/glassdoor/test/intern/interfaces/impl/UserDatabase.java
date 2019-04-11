@@ -8,10 +8,6 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-//Comment
-//Logger $j
-//Exception Handling with Grace
-
 public class UserDatabase implements DaoOperations {
   Map<Integer, UserObject> users;
 
