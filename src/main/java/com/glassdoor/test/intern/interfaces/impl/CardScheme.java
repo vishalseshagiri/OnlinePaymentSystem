@@ -25,7 +25,7 @@ public class CardScheme implements PaymentProcessor {
         IssuingBank issuingBank = new IssuingBank(incomingRequest);
         if (issuingBank.getPaymentStatus()) {
             incomingRequest.setAmount(issuingBank.incomingRequest.getAmount());
-            paymentStatus = true;
+            setPaymentStatus();
         }
     }
 
@@ -37,6 +37,9 @@ public class CardScheme implements PaymentProcessor {
 
     @Override
     public boolean getPaymentStatus() {
-        return this.paymentStatus;
+        return paymentStatus;
     }
+
+    @Override
+    public void setPaymentStatus() {paymentStatus = true;}
 }

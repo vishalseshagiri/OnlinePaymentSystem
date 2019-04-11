@@ -6,14 +6,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
 
-/**
- *
- * ADD LOGGER 4J
- */
-
-
-
-
 public class MerchantDatabase implements DaoOperations {
     public Set<String> merchants;
     public MerchantDatabase() {

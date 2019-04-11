@@ -1,5 +1,6 @@
 package com.glassdoor.test.intern.interfaces.impl;
 
+import com.glassdoor.test.intern.pymtProcDTO.ErrorHandler;
 import com.glassdoor.test.intern.pymtProcDTO.IncomingRequest;
 import com.glassdoor.test.intern.pymtProcDTO.UserObject;
 import com.glassdoor.test.intern.interfaces.PaymentProcessor;
@@ -10,9 +11,9 @@ public class IssuingBank implements PaymentProcessor {
     private boolean paymentStatus;
 
     public IssuingBank(IncomingRequest i) throws Exception {
+        paymentStatus = false;
         incomingRequest = i;
         processPayment();
-        paymentStatus = false;
     }
 
     @Override
@@ -25,8 +26,7 @@ public class IssuingBank implements PaymentProcessor {
             // If isCardPresentTransaction
             if (incomingRequest.isCardPresentTransaction()) {
                 if (!incomingRequest.getPin().equals(user.getCardPin())) {
-                    System.out.println(incomingRequest.getPin() + " " + user.getCardPin());
-                    throw new Exception("Illegal Transaction request, Pin is incorrect !");
+                    throw new Exception(ErrorHandler.INCORRECTPIN);
                 }
             }
             // Does the billing address and incomingRequest address correct
@@ -37,18 +37,18 @@ public class IssuingBank implements PaymentProcessor {
                     if (!user.isCardStolen()) {
                         // Location of transaction ?
                         // Google maps integration if possible
-                        paymentStatus = true;
+                        setPaymentStatus();
                     } else {
-                        throw new Exception("Illegal Transaction request, Card is Stolen !");
+                        throw new Exception(ErrorHandler.STOLENCARD);
                     }
                 } else {
-                    throw new Exception("Illegal Transaction request, Insufficient Funds !");
+                    throw new Exception(ErrorHandler.INSUFFICIENTFUNDS);
                 }
             } else {
-                throw new Exception("Illegal Transaction request, Billing Address does not match !");
+                throw new Exception(ErrorHandler.ADDRESSMISMATCH);
             }
         } else {
-            throw new Exception("Illegal Transaction request, User is not a customer of Issuing Bank !");
+            throw new Exception(ErrorHandler.CUSTOMERDOESNOTEXIST);
         }
     }
 
@@ -56,6 +56,9 @@ public class IssuingBank implements PaymentProcessor {
     public boolean getPaymentStatus() {
         return paymentStatus;
     }
+
+    @Override
+    public void setPaymentStatus() {paymentStatus = true;}
 
     @Override
     public void chargeFee() {

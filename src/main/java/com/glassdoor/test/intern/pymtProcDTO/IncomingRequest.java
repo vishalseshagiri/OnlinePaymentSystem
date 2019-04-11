@@ -45,9 +45,7 @@ public class IncomingRequest {
     setCardPresentTransaction(isCardPresentTransaction);
     setMerchant(merchant);
     setTransactionLocation(transactionLocation);
-    if (isCardPresentTransaction()) {
-      setPin(cardPin);
-    }
+    setPin(cardPin);
   }
 
 

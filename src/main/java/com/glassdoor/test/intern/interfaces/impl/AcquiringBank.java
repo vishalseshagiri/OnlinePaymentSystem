@@ -5,21 +5,24 @@ package com.glassdoor.test.intern.interfaces.impl;
 
 //Comment
 
+import com.glassdoor.test.intern.pymtProcDTO.ErrorHandler;
 import com.glassdoor.test.intern.pymtProcDTO.IncomingRequest;
 import com.glassdoor.test.intern.interfaces.PaymentProcessor;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 /**
  * Explanaion
  */
 public class AcquiringBank implements PaymentProcessor {
 
     public IncomingRequest incomingRequest;
-    public boolean paymentStatus;
+    private boolean paymentStatus;
+    private static final Logger logger = LogManager.getLogger(AcquiringBank.class);
 
     public AcquiringBank(IncomingRequest i) throws Exception {
+       paymentStatus = false;
        incomingRequest = i;
        processPayment();
-       paymentStatus = false;
     }
 
 
@@ -32,17 +35,18 @@ public class AcquiringBank implements PaymentProcessor {
             CardScheme cardScheme = new CardScheme(incomingRequest);
             if (cardScheme.getPaymentStatus()) {
                 incomingRequest.setAmount(cardScheme.incomingRequest.getAmount());
-                paymentStatus = true;
+                setPaymentStatus();
                 submitPayment();
             }
         } else {
 
-            throw new Exception("Illegal Argument Exception, Merchant does not exist !");
+//            throw new Exception("Illegal Argument Exception, Merchant does not exist !");
+            throw new Exception(ErrorHandler.MERCHANTDOESNOTEXIT);
         }
     }
 
     private void submitPayment() {
-        System.out.println(String.format("Payment of %f processed", incomingRequest.getAmount()));
+        logger.info(String.format("Payment of %f processed", incomingRequest.getAmount()));
     }
 
     @Override
@@ -55,5 +59,8 @@ public class AcquiringBank implements PaymentProcessor {
     public boolean getPaymentStatus() {
        return paymentStatus;
     }
+
+    @Override
+    public void setPaymentStatus() {paymentStatus = true;}
 
 }
