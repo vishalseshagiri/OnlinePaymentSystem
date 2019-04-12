@@ -1,6 +1,17 @@
 ### Online Processing Payment Application
 - **Author** : Vishal Seshagiri
 
+#### Implementation Story
+- Online Payment Systems is something I was completely oblivious of before this project and researching through scores of sources of information eventually got me this [video](https://youtu.be/ZciY1No5-Rw).
+- The rough system design whiteboard after grasping the contents looked something like this `:dizzy_face:`
+![](Documentation/Glassdoor_intern_SystemDesignWhiteBoard.jpg)
+- Here's a run down of the steps performed by this application:
+    - The User initiates a request by passing in their name, address, amount, type of transaction, card scheme (Visa, Mastercard, Discover) etc.
+    - The request is passed to the acquiring bank which holds the merchant's account. The acquiring bank checks if the merchant exists and then passes the request to the Card Scheme.
+    - The Card Scheme is considered a blackbox for the purpose of this project and merely routes the data to the Issuing bank which holds the user's accounts.
+    - The Issuing bank then runs a series of checks on the user. On verification that the transaction is feasible a success acknowledgement is backpropagated through the network to the user and the merchant. A service fee is charged at each of the payment processors.
+    - The **isCardPresent** boolean is a very domain specific information for Online Payment Systems. It has nothing to do with the presence or absence of the card. If **isCardIsPresent** is **true** in the Payments world it is a chip and pin transaction while if it is **false** it indicates an online transaction like ones we do at ecommerce websites where we basically enter card information and that's that.
+
 #### UML Sequence Diagram
 ![](Documentation/Glassdoor_intern_UML_Sequence_Diagram.png)
 
@@ -29,9 +40,14 @@
 - They simulate the following conditions:
     - Successful isCardPresent Transaction
     - Successful isCardNotPresent Transaction
-    - Condition where CardNotPresent Exception is thrown
-    - Condition where IncorrectPin Exception is thrown
-    - Condition where StolenCard Exception is thrown
-    - Condition where InsufficientFunds Exception is thrown
-    - Condition where AddressMismatch Exception is thrown
-    - Condition where CustomerDoesNotExist Exception is thrown
+    - Condition where **CustomerDoesNotExist** Exception is thrown
+    - Condition where **CardNotPresent** Exception is thrown
+    - Condition where **IncorrectPin** Exception is thrown
+    - Condition where **AddressMismatch** Exception is thrown
+    - Condition where **StolenCard** Exception is thrown
+    - Condition where **InsufficientFunds** Exception is thrown
+- The exceptions listed above are in a **logical ordered hierarchy**.
+
+#### Acknowledgements:
+- **Glassdoor** - for boilerplate code.
+- **[Dennis Jones](https://www.linkedin.com/in/dennisjones2/)** - for the awesome YouTube video.
