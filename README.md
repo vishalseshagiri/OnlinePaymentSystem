@@ -24,7 +24,7 @@
     - Payment Procedure Data Transfer Operations which are **IncomingRequest.java** and **UserObject.java**.
     - Payment Processor files which are **AcquiringBank.java**, **CardScheme.java** and **IssuingBank.java**.
     - Payment Runner file which is **PaymentApplication.java**.
-- I have used the **Protoype Design Pattern** for this project which is evident from the ample usage of interfaces and objects.
+- I have used the **Factory Design Pattern** for this project which is evident from the ample usage of interfaces and objects.
 - There are two basic interfaces in the project which are **DaoOperations** and **PayProcessor**
 - Whenever possible class variables have been limited to private access modifiers to ensure **security** in the application and getters and setters are used to facilitate **accessibilty**.
 - Custom **Exceptions** are thrown to **validate** the data and caught in the application runner. A static final class **ErrorHandler.java** has been created to store the exception enumerations.
